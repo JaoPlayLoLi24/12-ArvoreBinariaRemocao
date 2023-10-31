@@ -1,3 +1,4 @@
+//João Vitor Vieira Souto Camelo Monteiro
 #include <iostream>
 using namespace std;
 
@@ -248,12 +249,48 @@ void removerElementoArvore(NO* no, int valor) {
 
 
 	// caso 1: sem filhos	
-	
+	if (atual->esq == NULL && atual->dir == NULL) {
+		if (pai == NULL) {
+			raiz = NULL;
+		}
+		else if (pai->esq == atual) {
+			pai->esq = NULL;
+		}
+		else {
+			pai->dir = NULL;
+		}
+	}
 
 	// caso 2: um filho	
-	
+	if (atual->esq == NULL) {
+		if (pai == NULL) {
+			raiz = atual->dir;
+		}
+		else if (pai->esq == atual) {
+			pai->esq = atual->dir;
+		}
+		else {
+			pai->dir = atual->dir;
+		}
+		free(atual);
+		return;
+
+	}
 
 	// caso 3: dois filhos
+	else if (atual->dir == NULL) {
+		if (pai == NULL) {
+			raiz = atual->esq;
+		}
+		else if (pai->esq == atual) {
+			pai->esq = atual->esq;
+		}
+		else {
+			pai->dir = atual->esq;
+		}
+		free(atual);
+		return;
+	}
 
 	// procura o elmento mais a esquerda da sub-arvore da direita
 	NO* sucessor = atual->dir;
